@@ -22,17 +22,17 @@ SCALER_PATH = "models/scaler.pkl"
 
 if not os.path.exists(MODEL_PATH) or not os.path.exists(SCALER_PATH):
     raise FileNotFoundError(
-        "❌ Model or Scaler not found! Run train_model.py first to generate them."
+        "Model or Scaler not found!"
     )
 
 model = joblib.load(MODEL_PATH)
 scaler = joblib.load(SCALER_PATH)
 
 # ------------------------------------------------------------
-#  Helper: Safe Float Conversion with Validation
+#   Safe Float Conversion with Validation
 # ------------------------------------------------------------
 def safe_float(value, field_name, min_val=None, max_val=None):
-    """Convert value to float safely and validate ranges."""
+    """Converting value to float safely and validating ranges."""
     try:
         val = float(value)
     except ValueError:
@@ -75,12 +75,12 @@ def index():
             # Predicting Soil Moisture
             # ------------------------------------------------
             pred_raw = model.predict(X_scaled)[0]
-            pred_percent = (pred_raw / 8000) * 100  # normalize
+            pred_percent = (pred_raw / 8000) * 100  # raw to percentage conversion logic
 
             prediction = f"{pred_percent:.2f} %"
 
         except Exception as e:
-            prediction = f"❌ Error: {e}"
+            prediction = f" Error: {e}"
 
     return render_template("index.html", prediction=prediction)
 
