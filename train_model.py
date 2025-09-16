@@ -67,7 +67,7 @@ joblib.dump(model, "models/rf_model.pkl")
 joblib.dump(scaler, "models/scaler.pkl")
 
 # ------------------------------------------------------------
-# Evaluate the Model
+# Evaluating the Model
 # ------------------------------------------------------------
 # Using standard regression metrics:
 # - R² Score (goodness of fit, closer to 1 is better)
